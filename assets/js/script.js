@@ -4,10 +4,13 @@ function startGame()
         boardHeight = 450,
         boxSize = 135;
 
-    var level = 1.88,
-        score = 88;
+    var difficulty = 1,
+        level = 2,
+        score = 200,
+        preScore = 200;
 
     var timeoutHandler;
+    var timeout;
 
     var spells = {
         QQQ: {name: 'cold', key: 'QQQ'},
@@ -24,6 +27,9 @@ function startGame()
     var spellKeys = Object.keys(spells);
     var opacity;
 
+    clearTimeout();
+    startTimer(0);
+
     function createFallBox() {
 
         var nextTime = 2500 / level;
@@ -37,12 +43,38 @@ function startGame()
             if (opacity < 0) {
                 opacity = 0;
             }
-            $box.css({top: top, left: left, color: 'rgba(255,255,255,' + opacity + ')', 'text-shadow': '0 2px 5px rgba(0,0,0,' + opacity + ')'}).animate({top: boardHeight + 'px'},  13000 / level, 'linear', function() {
+
+            function moveBox()
+            {
+                $box.css({top: top, left: left, color: 'rgba(255,255,255,' + opacity + ')', 'text-shadow': '0 2px 5px rgba(0,0,0,' + opacity + ')'}).attr('id', spell).animate({top: boardHeight + 'px'},  13000 / level, 'linear', function() {
+                    preScore += 1;
+                    if (preScore > score) {
+                        return gameEnd();
+                    } else {
+                        return deleteBox();
+                    }
+                });
+            }
+
+            function deleteBox()
+            {
                 $box.remove();
-            });
+            }
+
+            function gameEnd()
+            {
+                clearTimeout(timeoutHandler);
+                for (let i = 0; i < 5; i++) {
+                    document.getElementById('game-board').innerHTML = "";
+                    deleteBox();
+                }
+
+            }
+
+            moveBox();
+
             createFallBox();
         }, nextTime);
-
     }
 
     createFallBox();
@@ -77,18 +109,23 @@ function startGame()
                     var spellKey = letters.split('').sort().join('');
                     var spell = spells[spellKey].name;
                     var match = $('.box.' + spell).first();
+                    preScore = score;
+                    console.log(match);
                     if (match.length == 1) {
                         level += 0.01;
                         score += 1;
                         $('.current-score').text(score);
-                        console.log(level)
+                        // console.log(level)
                         if ((Number((level ^ 0).toFixed(2))) === level) {
                             $('.current-level').text(level);
                         }
                         level = parseFloat(level.toFixed(2));
+                        // alert('2');
                         match.finish();
+                    } else {
+                        // alert('Part for lose keys');
                     }
-                    console.log(spell);
+                    // console.log(spell);
                 }
             } else {
                 if ($('.normal .spell-key').length == 3) {
@@ -101,7 +138,7 @@ function startGame()
 
     function startTimer(duration) {
         var timer = duration, minutes, seconds;
-        setInterval(function () {
+        timeout = setInterval(function () {
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
 
@@ -117,7 +154,6 @@ function startGame()
         }, 1000);
 
     }
-
-    startTimer(0);
 }
+
 
