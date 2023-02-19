@@ -177,6 +177,4 @@ function game() {
             }
         });
     }
-
-    return 1;
 }
