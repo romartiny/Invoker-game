@@ -159,6 +159,13 @@ select {
     color: #FFFFFF;
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.game-start-button:hover {
+    border: 1px solid #6b6b6b;
+    transition: 1s;
 }
 
 .game-info {
