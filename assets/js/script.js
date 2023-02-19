@@ -4,8 +4,8 @@ function startGame()
         boardHeight = 450,
         boxSize = 135;
 
-    var level = 1,
-        score = 0;
+    var level = 1.88,
+        score = 88;
 
     var timeoutHandler;
 
@@ -81,9 +81,11 @@ function startGame()
                         level += 0.01;
                         score += 1;
                         $('.current-score').text(score);
-                        if ((level ^ 0) === level) {
+                        console.log(level)
+                        if ((Number((level ^ 0).toFixed(2))) === level) {
                             $('.current-level').text(level);
                         }
+                        level = parseFloat(level.toFixed(2));
                         match.finish();
                     }
                     console.log(spell);
