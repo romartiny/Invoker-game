@@ -33,27 +33,37 @@
                     <div class="game-board"></div>
                 </div>
                 <div class="game-info">
+                    <div class="game-name">
+                        <h1 class="game-main-text">Invoker Game</h1>
+                    </div>
                     <div class="dashboard">
-                        <p class="current-level-text">Your current level</p>
-                        <div class="level">1</div>
-                        <p class="current-score-text">Your current score</p>
-                        <div class="score">0</div>
+                        <div class="dashboard-current-level">
+                            <p class="current-level-text">Your current level: </p>
+                            <div class="current-level">1</div>
+                        </div>
+                        <div class="dashboard-current-score">
+                            <p class="current-score-text">Your current score: </p>
+                            <div class="current-score">0</div>
+                        </div>
                     </div>
                     <div class="dashboard-settings">
                         <label>
-                            <input placeholder="Input your level">
-                        </label>
-                        <label>
-                            <input placeholder="Input your level">
+                            <select class="dashboard-game-level" name="dashboard-game-level" id="game-level">
+                                <option class="game-level-option" value="beginner">Beginner</option>
+                                <option class="game-level-option" value="easy">Easy</option>
+                                <option class="game-level-option" value="normal">Normal</option>
+                                <option class="game-level-option" value="hard">Hard</option>
+                                <option class="game-level-option" value="expert">Expert</option>
+                            </select>
                         </label>
                     </div>
                     <div class="game-spells">
                         <div class="normal">
-                            <div class="spell-key"></div>
-                            <div class="spell-key"></div>
-                            <div class="spell-key"></div>
+                            <div class="spell-key E">E</div>
+                            <div class="spell-key Q">Q</div>
+                            <div class="spell-key W">W</div>
                         </div>
-                        <div class="spell-key invoke"></div>
+                        <div class="spell-key invoke">R</div>
                     </div>
                     <div class="dashboard-game-start">
                         <button>Start</button>

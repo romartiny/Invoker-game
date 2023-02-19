@@ -78,9 +78,9 @@ $(document).on('keydown', function(e) {
                 if (match.length == 1) {
                     level += 0.01;
                     score += 1;
-                    $('.score').text(score);
+                    $('.current-score').text(score);
                     if ((level ^ 0) === level) {
-                        $('.level').text(level);
+                        $('.current-level').text(level);
                     }
                     match.finish();
                 }

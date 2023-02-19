@@ -93,9 +93,59 @@ select {
     border-radius: 15px;
 }
 
+.game-name {
+    display: flex;
+    justify-content: space-around;
+}
+
+.game-main-text {
+    font-family: 'Poppins', sans-serif;
+    color: #FFFFFF;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+}
+
+.dashboard-current-level {
+    display: flex;
+}
+
+.current-level {
+    padding-left: 10px;
+}
+
+.dashboard-current-score {
+    display: flex;
+}
+
+.current-score {
+    padding-left: 10px;
+}
+
 .current-level-text, .current-score-text {
     font-family: 'Poppins', sans-serif;
     color: #FFFFFF;
+}
+
+.current-score, .current-level {
+    font-family: 'Poppins', sans-serif;
+    color: #FFFFFF;
+}
+
+.dashboard-game-level {
+    width: 400px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 100px;
+    width: 500px;
 }
 
 .box, .spell-key {
@@ -106,7 +156,7 @@ select {
     display: flex;
     width: 100%;
     margin: auto;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .game-box {
@@ -151,17 +201,13 @@ select {
     text-align: center;
     line-height: 100px;
     box-shadow: 0 5px 10px 0 black;
-    border-radius: 5px;
+    border-radius: 20px;
     color: white;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     background: none no-repeat center center;
     background-size: cover;
     cursor: pointer;
-    transition: box-shadow 0.3; }
-
-.box:hover {
-    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.8);
-    color: white;
+    transition: box-shadow 0.3;
 }
 
 .box.cold {
@@ -227,11 +273,6 @@ select {
     background-size: cover;
     cursor: pointer;
     opacity: 0.9;
-}
-
-.game-spells:hover {
-    box-shadow: 0 0 20px 0 white !important;
-    opacity: 1 !important;
 }
 
 .game-spells .Q {
