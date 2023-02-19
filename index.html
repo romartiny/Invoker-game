@@ -38,12 +38,18 @@
                     </div>
                     <div class="dashboard">
                         <div class="dashboard-current-level">
-                            <p class="current-level-text">Your current level: </p>
+                            <p class="current-level-text">Current level: </p>
                             <div class="current-level">1</div>
                         </div>
                         <div class="dashboard-current-score">
-                            <p class="current-score-text">Your current score: </p>
+                            <p class="current-score-text">Current score: </p>
                             <div class="current-score">0</div>
+                        </div>
+                        <div class="dashboard-current-time">
+                            <p class="current-time-text">Game time: </p>
+                            <div class="current-time">
+                                <p id="time">00:00</p>
+                            </div>
                         </div>
                     </div>
                     <div class="dashboard-settings">
@@ -66,7 +72,7 @@
                         <div class="spell-key invoke">R</div>
                     </div>
                     <div class="dashboard-game-start">
-                        <button>Start</button>
+                        <button class="game-start-button" id="game-start-button" onclick="startGame()">Start</button>
                     </div>
                 </div>
             </div>

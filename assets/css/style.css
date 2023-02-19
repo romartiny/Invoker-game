@@ -110,34 +110,55 @@ select {
     padding-top: 25px;
 }
 
-.dashboard-current-level {
+.dashboard-current-level, .dashboard-current-score, .dashboard-current-time {
     display: flex;
 }
 
-.current-level {
+.current-level, .current-score, .current-time {
     padding-left: 10px;
 }
 
-.dashboard-current-score {
-    display: flex;
-}
-
-.current-score {
-    padding-left: 10px;
-}
-
-.current-level-text, .current-score-text {
+.current-level-text, .current-score-text, .current-time-text {
     font-family: 'Poppins', sans-serif;
     color: #FFFFFF;
 }
 
-.current-score, .current-level {
+.current-score, .current-level, .current-time {
     font-family: 'Poppins', sans-serif;
     color: #FFFFFF;
+}
+
+.dashboard-settings {
+    padding-top: 20px;
 }
 
 .dashboard-game-level {
     width: 400px;
+    background: none;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    border: 1px solid #FFFFFF;
+    /*-webkit-appearance: none;*/
+    -moz-appearance : none;
+    padding: 0px 3px;
+}
+
+.dashboard-game-start {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.game-start-button {
+    width: 200px;
+    height: 50px;
+    background: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 24px;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
 }
 
 .game-info {
@@ -206,8 +227,7 @@ select {
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     background: none no-repeat center center;
     background-size: cover;
-    cursor: pointer;
-    transition: box-shadow 0.3;
+    cursor: default;
 }
 
 .box.cold {
@@ -252,7 +272,7 @@ select {
 .game-spells {
     display: flex;
     justify-content: space-around;
-    margin-top: 5px;
+    padding-top: 30px;
 }
 
 .game-spells .normal {
@@ -271,7 +291,7 @@ select {
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     background: none no-repeat center center rgba(255, 255, 255, 0.3);
     background-size: cover;
-    cursor: pointer;
+    cursor: default;
     opacity: 0.9;
 }
 
