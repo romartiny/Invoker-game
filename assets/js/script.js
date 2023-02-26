@@ -1,16 +1,12 @@
-function startGame() {
-    return game();
-}
-
 function game() {
+    let play = false;
 
     var boardWidth = 500,
         boardHeight = 450,
         boxSize = 135;
 
-    var play = true,
-        difficulty = 1,
-        timer = 1,
+    var difficulty = 1,
+        timer = 0,
         level = 2,
         score = 200,
         preScore = 200;
@@ -33,14 +29,14 @@ function game() {
 
     var spellKeys = Object.keys(spells);
 
-    timer = 1;
-    startTimer(0);
-    keyTap();
-    document.getElementById('game-board').innerHTML = "";
+    startGame();
 
     function createFallBox() {
 
         var nextTime = 2500 / level;
+
+        console.log(preScore);
+        console.log(score);
         timeoutHandler = setTimeout(function () {
             var spellKey = spellKeys[Math.floor(Math.random() * spellKeys.length)];
             var spell = spells[spellKey].name;
@@ -51,7 +47,6 @@ function game() {
             if (opacity < 0) {
                 opacity = 0;
             }
-
             function moveBox() {
                 $box.css({
                     top: top,
@@ -74,46 +69,15 @@ function game() {
             }
 
             moveBox();
-
             createFallBox();
-
+            if (preScore > score) {
+                return clearTimeout(timeoutHandler);
+            }
         }, nextTime);
 
-        function gameEnd() {
-            clearTimeout(timeoutHandler);
-            timer = 0;
-            score = 200;
-            preScore = 200;
-            level = 1;
-            for (let i = 0; i < 5; i++) {
-                document.getElementById('game-board').innerHTML = "";
-            }
-
+        if (play === false) {
+            return console.log('gg');
         }
-    }
-
-    createFallBox();
-
-
-    function startTimer(duration) {
-        var timerRef = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timerRef / 60, 10);
-            seconds = parseInt(timerRef % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            if (timer === 1) {
-                document.getElementById("time").innerHTML = minutes + ":" + seconds;
-                if (++timerRef < 0) {
-                    timerRef = duration;
-                }
-            } else {
-
-            }
-
-        }, 1000);
     }
 
     function keyTap() {
@@ -137,8 +101,11 @@ function game() {
                     break;
             }
             if (letter) {
-                if (letter == 'R') {
-                    $('.invoke').css({transition: 'none', opacity: 1}).finish().animate({opacity: 0.5}, 500, function () {
+                if (letter === 'R') {
+                    $('.invoke').css({
+                        transition: 'none',
+                        opacity: 1
+                    }).finish().animate({opacity: 0.5}, 500, function () {
                         $('.invoke').css({
                             transition: 'all 0.3s',
                             color: 'rgba(255,255,255,' + opacity + ')',
@@ -147,12 +114,12 @@ function game() {
                     });
                     // get letters
                     var letters = $($('.normal').html()).text();
-                    if (letters.length == 3) {
+                    if (letters.length === 3) {
                         // sort letters
                         var spellKey = letters.split('').sort().join('');
                         var spell = spells[spellKey].name;
                         var match = $('.box.' + spell).first();
-                        if (match.length == 1) {
+                        if (match.length === 1) {
                             level += 0.01;
                             score += 1;
                             $('.current-score').text(score);
@@ -166,7 +133,7 @@ function game() {
                         console.log(spell);
                     }
                 } else {
-                    if ($('.normal .spell-key').length == 3) {
+                    if ($('.normal .spell-key').length === 3) {
                         $('.normal .spell-key').first().remove();
                     }
                     $('<div class="spell-key ' + letter + '">' + letter + '</div>').css({
@@ -176,5 +143,61 @@ function game() {
                 }
             }
         });
+        if (play === false) {
+            return false;
+        }
     }
+
+    function startTimer(duration) {
+        let timerRef = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timerRef / 60, 10);
+            seconds = parseInt(timerRef % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            if (timer === 1) {
+                document.getElementById("time").innerHTML = minutes + ":" + seconds;
+                if (++timerRef < 0) {
+                    timerRef = duration;
+                }
+            } else {
+                minutes = 0;
+                seconds = 0;
+                return clearTimeout(timeoutHandler);
+            }
+
+        }, 1000);
+    }
+
+    function startGame()
+    {
+        timer = 1;
+        play = true;
+        startTimer(0);
+        keyTap();
+        createFallBox();
+        document.getElementById('game-board').innerHTML = "";
+    }
+
+    function gameEnd() {
+        clearTimeout(timeoutHandler);
+        timer = 0;
+        score = 200;
+        preScore = 200;
+        level = 1;
+        play = false;
+        // for (let i = 0; i < 5; i++) {
+        //     document.getElementById('game-board').innerHTML = "";
+        // }
+        play = false;
+
+        return console.log('gg game');
+    }
+}
+
+function startGame() {
+    stop();
+    return game();
 }
